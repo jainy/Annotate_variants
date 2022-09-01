@@ -115,11 +115,9 @@ hgvsID	Chrom	position	Ref	Alt	Type_of_Variation	variant_depth	Total_read_depth	p
 * requests 2.28.1
 * cyvcf2 0.30.16
 
---Tested with test VCF file (provided) took X secs and X MByte memory
+--Tested with test VCF file (provided) took 1058.3 +/- 23 secs and 55.5 +/- 2 MByte memory (based on three runs)
 
 --Time consuming step is sending and gathering API request as can be done in only 200 at a time
 	one way to improve the performance is to request only the fields interested to be 
 	returned instead of requesting the whole data available for the variant to be returned.
 
-The execution time slightly varied increased/decreased by X seconds when doing 
-	multiple runs.
