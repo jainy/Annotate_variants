@@ -128,7 +128,7 @@ def process_API_response(jsonobj):
 		# getting relevant info
 		hgvsid = varinfo["id"]
 		most_sev_cons = varinfo["most_severe_consequence"]
-		minor_allele_freq = ""
+		minor_allele_freq = "NULL"
 
 		colocated_var = varinfo.get("colocated_variants")
 		if colocated_var: # <class 'list'>
@@ -185,6 +185,7 @@ def process_API_response(jsonobj):
 		else:
 			# gene names and related info is converted from list to string
 			genes_str = ";".join([str(item) for item in genenames])
+			# joining the respective information (biotype, gene, consequence) from multiple transcripts
 			genesrelated_info_str = ";".join([str(item) for item in genesrelated_info])
 			# information is loaded to dictionary of parsed information from VEP API response
 			VEP_API_annotdict[hgvsid] = [most_sev_cons, minor_allele_freq, genes_str, genesrelated_info_str]
