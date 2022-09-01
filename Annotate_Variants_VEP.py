@@ -317,7 +317,7 @@ for variant in VCF(args.vcffile):
 		count = 0
 		# hgvs ids in request list and VEP annotated dictionary is compared to find missing
 		errorlist = create_error_list(request_list,VEP_annotdict)
-		if errorlist != None:
+		if len(errorlist):
 			failedtoannotate.extend(errorlist)
 		request_list = []
 	else:
@@ -337,15 +337,15 @@ for ids in VEP_annotdict:
 	else:
 		continue
 errorlist = create_error_list(request_list,VEP_annotdict)
-if errorlist != None:
+if len(errorlist):
 	failedtoannotate.extend(errorlist)
 # print the final annotated dictionary as a tsv file
-print_finaldict(variant_infodict,args.outfile)
+print_finaldict(variant_infodict, args.outfile)
 #  if some variants failed to get annotated, those are listed in the log file
-if errorlist != None:
-	write_error_log(errorlist,API_failed_log)
+if len(errorlist):
+	write_error_log(errorlist, API_failed_log)
 
 print("----------DONE-----------")
 time_elapsed = (time.perf_counter() - time_start)
-memMb=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
-print ("%5.1f secs %5.1f MByte" % (time_elapsed,memMb))
+memMb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024.0/1024.0
+print("%5.1f secs %5.1f MByte" % (time_elapsed,memMb))
